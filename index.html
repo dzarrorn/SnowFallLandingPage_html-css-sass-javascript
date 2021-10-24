@@ -12,6 +12,71 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <div class="container">
+      <div class="content">
+        <h3 class="title">we are coming soon</h3>
+        <p class="description">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum rem
+          deserunt adipisci vero ea molestias nihil aliquid fuga incidunt
+          accusamus.
+        </p>
+        <div class="count-down">
+          <div class="box">
+            <h3 id="days">00</h3>
+            <p>days</p>
+          </div>
+          <div class="box">
+            <h3 id="hours">00</h3>
+            <p>hours</p>
+          </div>
+          <div class="box">
+            <h3 id="minutes">00</h3>
+            <p>minutes</p>
+          </div>
+          <div class="box">
+            <h3 id="seconds">00</h3>
+            <p>seconds</p>
+          </div>
+        </div>
+        <a href="#" class="btn">remind me</a>
+      </div>
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script>
+      function createSnow() {
+        let container = document.querySelector(".container");
+        let span = document.createElement("span");
+        span.style.left = Math.random() * innerWidth + "px";
+        container.appendChild(span);
+        setTimeout(() => {
+          span.remove();
+        }, 5000);
+      }
+      setInterval(createSnow, 100);
+      // count down part
+      let countDate = new Date("feb 1, 2022 00:00:00").getTime();
+      function countDown() {
+        let now = new Date().getTime();
+        gap = countDate - now;
+
+        let seconds = 1000;
+        let minutes = seconds * 60;
+        let hours = minutes * 60;
+        let days = hours * 24;
+
+        let d = Math.floor(gap / days);
+        let h = Math.floor((gap % days) / hours);
+        let m = Math.floor((gap % hours) / minutes);
+        let s = Math.floor((gap % minutes) / seconds);
+
+        document.getElementById("days").innerText = d;
+        document.getElementById("hours").innerText = h;
+        document.getElementById("minutes").innerText = m;
+        document.getElementById("seconds").innerText = s;
+      }
+      setInterval(() => {
+        countDown();
+      }, 1000);
+    </script>
   </body>
 </html>
